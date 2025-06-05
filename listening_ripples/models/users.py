@@ -26,23 +26,11 @@ class User(Base):
     updated_at = Column(DateTime, default=func.now(), onupdate=func.now(), nullable=False, comment='用户最后更新时间')
     bio = Column(Text, nullable=True, comment='用户个人介绍或简介')
     created_on = Column(
-        DateTime, default=lambda: datetime.datetime.now(), nullable=True
+        DateTime, default=lambda: datetime.now(), nullable=True
     )
     changed_on = Column(
-        DateTime, default=lambda: datetime.datetime.now(), nullable=True
+        DateTime, default=lambda: datetime.now(), nullable=True
     )
-
-    @declared_attr
-    def created_by_fk(self):
-        return Column(
-            Integer, ForeignKey("ab_user.id"), default=self.get_user_id, nullable=True
-        )
-
-    @declared_attr
-    def changed_by_fk(self):
-        return Column(
-            Integer, ForeignKey("ab_user.id"), default=self.get_user_id, nullable=True
-        )
 
     created_by = relationship(
         "User",

@@ -49,12 +49,12 @@ class Settings(BaseSettings):
             self.FRONTEND_HOST
         ]
 
-    PROJECT_NAME: str
+    PROJECT_NAME: str = "listening-to-waves"
     SENTRY_DSN: HttpUrl | None = None
-    POSTGRES_SERVER: str = "124.222.172.192"
+    POSTGRES_SERVER: str = "127.0.0.1"
     POSTGRES_PORT: int = 5432
     POSTGRES_USER: str = "postgres"
-    POSTGRES_PASSWORD: str = "yanilo315."
+    POSTGRES_PASSWORD: str = "123456"
     POSTGRES_DB: str = "listening_ripples"
 
     @computed_field  # type: ignore[prop-decorator]
@@ -92,8 +92,8 @@ class Settings(BaseSettings):
         return bool(self.SMTP_HOST and self.EMAILS_FROM_EMAIL)
 
     EMAIL_TEST_USER: EmailStr = "test@example.com"
-    FIRST_SUPERUSER: EmailStr
-    FIRST_SUPERUSER_PASSWORD: str
+    FIRST_SUPERUSER: EmailStr = "admin@example.com"
+    FIRST_SUPERUSER_PASSWORD: str = "123456"
 
     def _check_default_secret(self, var_name: str, value: str | None) -> None:
         if value == "changethis":
